@@ -1,0 +1,14 @@
+h3 Categories
+= link_to 'New Category', new_category_path, class: 'btn btn-mini'
+table.table.table-condensed
+  thead
+    tr
+      th Name
+      th
+  tbody
+    - @categories.each do |category|
+      tr
+        td = category.name
+        td
+          = link_to 'Edit', edit_category_path(category), class: 'btn btn-mini' 
+          = link_to("Destroy", category, data: {confirm: "Are you sure?" } , method: :delete, class: 'btn btn-mini') 
