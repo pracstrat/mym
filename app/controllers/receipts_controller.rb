@@ -5,6 +5,7 @@ class ReceiptsController < ApplicationController
     respond_to do |format|
       if @receipt.save
         format.html { redirect_to edit_receipt_path(@receipt), notice: 'Receipt was successfully created.' }
+        format.json { render action: 'scan'}
       else
         format.html { render action: 'new' }
       end

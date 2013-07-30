@@ -1,11 +1,16 @@
 require 'tesseract'
 class Receipt < ActiveRecord::Base
   attr_accessor :ocr_error
+  attr_accessor :from_scan
   validates :name, :purchase_date, presence: true
   has_many :line_items, dependent: :destroy
+  
+  after_create do |record|
+    ReceiptMailer.new_scan_notification(record).deliver if record.from_scan
+  end
 
   def self.analyse(io)
-    receipt = Receipt.new
+    receipt = Receipt.new(from_scan: true)
     begin
       text = ocr.text_for(io).strip
       lines = text.split(/\n/).reject{|line| line.blank?}.map(&:strip)
@@ -16,6 +21,7 @@ class Receipt < ActiveRecord::Base
     rescue =>ex
       receipt.ocr_error = ex.message
     end
+    
     receipt
   end
 

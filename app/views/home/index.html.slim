@@ -2,7 +2,7 @@ h2 Home
 
 .well
   h4 Upload Scanned Receipt
-  = form_tag [:scan, :receipts], multipart: true do
+  = form_tag :receipts, multipart: true do
     = hidden_field_tag :format, 'json'
     = file_field_tag :file, class: 'btn btn-mini'
     | &nbsp;
