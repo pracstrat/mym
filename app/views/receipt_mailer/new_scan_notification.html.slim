@@ -1,0 +1,9 @@
+.dear Dear Nate,
+.content You uploaded a new receipt. This is what is it looks like:
+
+p @receipt.name
+p @receipt.date
+
+ol
+- @receipt.line_items.each do |line_item|
+  li "#{line_item.name}: #{line_item.price}"
