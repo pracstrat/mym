@@ -1,9 +1,17 @@
-.dear Dear Nate,
-.content You uploaded a new receipt. This is what is it looks like:
+p Dear Nate,
+p You uploaded a new receipt. This is what is it looks like:
 
-p @receipt.name
-p @receipt.date
+p = "Purchase Location: #{@receipt.name}"
+p = "Purchase Date: #{@receipt.purchase_date}"
+p These are the line items:
 
-ol
-- @receipt.line_items.each do |line_item|
-  li "#{line_item.name}: #{line_item.amount}"
+table[border="1"]
+  thead
+    tr
+      th Name
+      th Amount
+  tbody
+    - @receipt.line_items.each do |line_item|
+      tr
+        td = line_item.name
+        td[style="text-align: right"] = as_dollar(line_item.amount)
