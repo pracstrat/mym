@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ReceiptsController do
   describe "POST create" do
-    let(:receipt) { mock_model(Receipt) }
+    let(:receipt) { Fabricate.build(:receipt) }
     let(:uploaded_file) { Rack::Test::UploadedFile.new("#{Rails.root}/spec/fixtures/receipt1.jpg", "image/jpeg") }
     
     describe "with a scan as input" do

@@ -11,5 +11,8 @@ module ApplicationHelper
     HTML
     html.html_safe
   end
-
+  
+  def as_dollar(amount)
+    sprintf("$ %.2f", amount)
+  end
 end

@@ -24,7 +24,7 @@ class Receipt < ActiveRecord::Base
     
     receipt
   end
-
+  
   private
   def self.ocr
     @ocr||=Tesseract::Engine.new {|e|
