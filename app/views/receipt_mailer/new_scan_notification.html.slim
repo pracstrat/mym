@@ -6,4 +6,4 @@ p @receipt.date
 
 ol
 - @receipt.line_items.each do |line_item|
-  li "#{line_item.name}: #{line_item.price}"
+  li "#{line_item.name}: #{line_item.amount}"

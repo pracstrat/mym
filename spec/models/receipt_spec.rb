@@ -38,25 +38,25 @@ describe Receipt do
     end
   end
   
-  # describe "send email callback" do
-  #   context "created receipt from scan" do
-  #     let(:receipt) { Receipt.analyse(File.read(fixture_file_path("receipt1.jpg"))) }
-  #     
-  #     it "should send an email" do
-  #       expect {
-  #         receipt.save!
-  #       }.to change(ActionMailer::Base.deliveries, :length).by(1)
-  #     end
-  #   end
-  #   
-  #   context "created receipt from input" do
-  #     let(:receipt) { Receipt.new(name: "john", purchase_date: "11/12/13") }
-  #     
-  #     it "should send an email" do
-  #       expect {
-  #         receipt.save!
-  #       }.to_not change(ActionMailer::Base.deliveries, :length)
-  #     end
-  #   end
-  # end
+  describe "send email callback" do
+    context "created receipt from scan" do
+      let(:receipt) { Receipt.analyse(File.read(fixture_file_path("receipt1.jpg"))) }
+      
+      it "should send an email" do
+        expect {
+          receipt.save!
+        }.to change(ActionMailer::Base.deliveries, :length).by(1)
+      end
+    end
+    
+    context "created receipt from input" do
+      let(:receipt) { Receipt.new(name: "john", purchase_date: "11/12/13") }
+      
+      it "should send an email" do
+        expect {
+          receipt.save!
+        }.to_not change(ActionMailer::Base.deliveries, :length)
+      end
+    end
+  end
 end
